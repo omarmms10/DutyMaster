@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Duty Master</title>
+
+    <!-- Bootstrap and other required styles -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    @using Microsoft.AspNetCore.Identity
+    @inject SignInManager<IdentityUser> SignInManager
+    @inject UserManager<IdentityUser> UserManager
+    <style>
+        /* Header Styling */
+        .navbar {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            margin-left: 10px;
+            transition: color 0.3s ease-in-out;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #f8f9fa !important;
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            }
+
+        .navbar-toggler-icon {
+            color: #fff;
+            border: none;
+        }
+
+        .navbar-toggler {
+            background-color: #fff;
+            border-radius: 50%;
+            transition: transform 0.4s;
+        }
+
+            .navbar-toggler:hover {
+                transform: rotate(180deg);
+            }
+
+        .nav-link.logout-btn {
+            display: inline-block;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s, transform 0.2s;
+            cursor: pointer;
+        }
+
+            .nav-link.logout-btn:hover {
+                color: #ff6b6b;
+                transform: scale(1.05);
+            }
+
+            /* Icon color change on hover */
+            .nav-link.logout-btn i {
+                transition: color 0.3s;
+            }
+
+            .nav-link.logout-btn:hover i {
+                color: #ff6b6b;
+            }
+
+        /* Footer Styling */
+        .footer {
+            width: 100%;
+    
+            background: linear-gradient(135deg, #0056b3, #007bff);
+            color: white;
+            padding: 20px 0;
+position: absolute;
+    bottom: 0px; left: 0;        }
+
+            .footer .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .footer a {
+                color: #f8f9fa;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+                .footer a:hover {
+                    color: #e0f7fa;
+                }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+            .scroll-to-top:hover {
+                transform: translateY(-5px);
+            }
+
+
+    
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand"
+                   asp-controller="Duty"
+                   asp-action="@(User.Identity.IsAuthenticated ? "Analytics" : "WebsiteLayout")">
+                    DutyMaster
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            @* <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i> Home</a>
+                            </li> *@
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Duty" asp-action="Analytics"><i class="fas fa-chart-bar"></i> Analytics</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Duty" asp-action="Index"><i class="fas fa-tasks"></i> Duties</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="fas fa-user"></i> Hello, @UserManager.GetUserName(User)</a>
+                            </li>
+                            <li class="nav-item">
+                                <!-- Styled Logout Button -->
+                                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/Identity/Account/Login" method="post" class="d-inline">
+                                    <button type="submit" class="nav-link logout-btn bg-transparent border-0">
+                                        <i class="fas fa-sign-out-alt"></i> Logout
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt"></i> Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-user-plus"></i> Register</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>2024 - © <span>Copyright</span> <strong class="px-1 sitename">Duty Master</strong> <span>All Rights Reserved</span></p>
+            <div>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <button class="scroll-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        
+            document.querySelector('.scroll-to-top').addEventListener('click', function () {
+            window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+            });
+            });
+
+
+
+
+        $(document).ready(function () {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <text>
+                        var toastType = "@TempData["ToastType"]";
+                        var message = "@TempData["SuccessMessage"]";
+
+                        if (toastType === "success") {
+                            toastr.success(message, "Success", {
+                                "iconClass": 'toast-success',
+                                "backgroundColor": "#28a745", // Green background for success
+                                "icon": '🟢'
+                            });
+                            } else if (toastType === "info") {
+                            toastr.info(message, "Update", {
+                                "iconClass": 'toast-info',
+                                "backgroundColor": "#17a2b8", // Blue background for info
+                                "icon": '🔵'
+                            });
+                            } else if (toastType === "error") {
+                            toastr.error(message, "Error", {
+                                "iconClass": 'toast-error',
+                                "backgroundColor": "#dc3545", // Red background for error
+                                "icon": '🔴'
+                            });
+                            } else if (toastType === "warning") {
+                            toastr.warning(message, "Warning", {
+                                "iconClass": 'toast-warning',
+                                "backgroundColor": "#ffc107", // Yellow background for warning
+                                "icon": '🟡'
+                            });
+                            }
+            </text>
+        }
+            });
+    </script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Duty Master</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="~/assets/img/favicon.png" rel="icon">
+  <link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="~/assets/css/main.css" rel="stylesheet">
+    <style>
+        /* Make image container square */
+        .square-image {
+            width: 300px; /* Adjust size as needed */
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+        }
+
+            .square-image img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+    </style>
+  <!-- =======================================================
+  * Template Name: NewBiz
+  * Template URL: https://bootstrapmade.com/newbiz-bootstrap-business-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+            <!-- Logo -->
+            <a href="#" class="logo d-flex align-items-center" onclick="location.reload(); return false;">
+                <h1 class="sitename">DutyMaster</h1>
+            </a>
+
+
+            <!-- Navigation Menu -->
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="#hero" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav><!-- End Navigation Menu -->
+
+        </div>
+    </header>
+
+    
+    <main class="main">
+        @RenderBody()
+        <!-- Hero Section -->
+        <section id="hero" class="hero section dark-background">
+
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-5 order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
+                        <img src="~/assets/img/hero-img.svg" class="img-fluid animated" alt="Duty Master Illustration">
+                    </div>
+                    <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-in">
+                        <h1>Efficient Duty Master for Your Team</h1>
+                        <p>Streamline task assignments, track progress, and enhance productivity with our all-in-one duty management solution.</p>
+                        <div class="d-flex">
+                            @if (User.Identity.IsAuthenticated)
+
+
+
+                            {
+                                <!-- Link to the Index page for logged-in users -->
+                                <a class="btn-get-started" asp-area="" asp-controller="Duty" asp-action="Analytics">Get Started</a>
+                            }
+
+
+
+                            else
+
+
+
+                            {
+                                <!-- Link to the Login page for non-logged-in users -->
+                                <a class="btn-get-started" asp-area="Identity" asp-page="/Account/Login">Get Started</a>
+                            }
+@*                             <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Learn More</span></a>
+                                
+ *@     
+                            <a href="~/assets/vid/DemoDutyMaster.mp4" class="glightbox btn-watch-video d-flex align-items-center">
+                                <i class="bi bi-play-circle"></i>
+                                <span>Learn More</span>
+                            </a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section><!-- /Hero Section -->
+        <!-- About Section -->
+        <section id="about" class="about section">
+
+            <div class="container">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-6 position-relative align-self-start order-lg-last order-first" data-aos="fade-up" data-aos-delay="200">
+                        <img src="~/assets/img/about.svg" class="img-fluid" alt="About Duty Master">
+                       @*  <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a> *@
+                    </div>
+
+                    <div class="col-lg-6 content order-last order-lg-first" data-aos="fade-up" data-aos-delay="100">
+                        <h3>About Our Duty Management Solution</h3>
+                        <p>
+                            Our platform is dedicated to helping teams efficiently manage their responsibilities and daily tasks. From assigning duties to tracking progress, we simplify the entire workflow, empowering teams to focus on what matters most.
+                        </p>
+                        <ul>
+                            <li>
+                                <i class="bi bi-diagram-3"></i>
+                                <div>
+                                    <h5>Seamless Duty Assignment</h5>
+                                    <p>Easily assign tasks to team members with clear deadlines and track their progress in real-time.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="bi bi-fullscreen-exit"></i>
+                                <div>
+                                    <h5>Centralized Task Tracking</h5>
+                                    <p>Manage and monitor all duties in one place, ensuring no task goes unnoticed and deadlines are met.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="bi bi-broadcast"></i>
+                                <div>
+                                    <h5>Real-Time Notifications</h5>
+                                    <p>Stay updated with instant notifications on duty assignments, updates, and completed tasks.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section><!-- /About Section -->
+        <!-- Features Section -->
+        <section id="features" class="features section">
+
+            <div class="container">
+
+                <div class="row gy-4 align-items-center features-item">
+                    <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+                        <img src="~/assets/img/features-1.svg" class="img-fluid" alt="Task Assignment Feature">
+                    </div>
+                    <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+                        <h3>Effortless Task Assignment and Tracking</h3>
+                        <p class="fst-italic">
+                            Efficiently assign, manage, and track all duties in one centralized platform, enhancing team coordination.
+                        </p>
+                        <ul>
+                            <li><i class="bi bi-check"></i><span> Assign tasks with clear deadlines and details.</span></li>
+                            <li><i class="bi bi-check"></i> <span> Real-time tracking of task progress and completion.</span></li>
+                            <li><i class="bi bi-check"></i> <span> Automated updates to keep everyone aligned.</span></li>
+                        </ul>
+                    </div>
+                </div><!-- Features Item -->
+
+                <div class="row gy-4 align-items-center features-item">
+                    <div class="col-md-5 order-lg-last d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                        <img src="~/assets/img/features-2.svg" class="img-fluid" alt="Collaboration Feature">
+                    </div>
+                    <div class="col-md-7" data-aos="fade-up" data-aos-delay="200">
+                        <h3>Seamless Team Collaboration</h3>
+                        <p class="fst-italic">
+                            Our solution enables team members to communicate efficiently and collaborate on duty management tasks.
+                        </p>
+                        <p>
+                            Instant messaging, task notes, and updates in a single platform. Enhance productivity through effective collaboration.
+                        </p>
+                    </div>
+                </div><!-- Features Item -->
+
+            </div>
+
+        </section><!-- /Features Section -->
+        <!-- Services Section -->
+        <section id="services" class="services section light-background">
+
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Our Services</h2>
+                <p>Empowering teams to streamline duty management and optimize task workflows efficiently.</p>
+            </div>
+
+            <div class="container">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-item position-relative">
+                            <div class="icon">
+                                <i class="bi bi-card-checklist" style="color: #0dcaf0;"></i>
+                            </div>
+                            <h3>Task Assignment and Scheduling</h3>
+                            <p>Assign duties to team members, set deadlines, and monitor task completion effortlessly.</p>
+                        </div>
+                    </div><!-- Service Item -->
+
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-item position-relative">
+                            <div class="icon">
+                                <i class="bi bi-calendar-event" style="color: #fd7e14;"></i>
+                            </div>
+                            <h3>Real-Time Notifications</h3>
+                            <p>Stay updated on duty statuses and get notifications for task completions and updates.</p>
+                        </div>
+                    </div><!-- Service Item -->
+
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-item position-relative">
+                            <div class="icon">
+                                <i class="bi bi-people" style="color: #20c997;"></i>
+                            </div>
+                            <h3>Team Collaboration</h3>
+                            <p>Collaborate on duties, share insights, and ensure effective communication within teams.</p>
+                        </div>
+                    </div><!-- Service Item -->
+                    <!-- Additional services can be added here -->
+
+                </div>
+
+            </div>
+
+        </section><!-- /Services Section -->
+        <!-- Why Us Section -->
+        <section id="why-us" class="why-us section dark-background">
+
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Why Choose Us</h2>
+                <p>Your trusted solution for optimized duty management and streamlined team productivity.</p>
+            </div>
+
+            <div class="container">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-item">
+                            <span>01</span>
+                            <h4>Reliable Task Tracking</h4>
+                            <p>Our platform ensures every duty is tracked from assignment to completion with real-time updates.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-item">
+                            <span>02</span>
+                            <h4>Enhanced Productivity</h4>
+                            <p>Effortlessly manage workflows, reduce downtime, and boost productivity across teams.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-item">
+                            <span>03</span>
+                            <h4>Scalable Solutions</h4>
+                            <p>Our duty management platform is adaptable for small teams to large enterprises.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section><!-- /Why Us Section -->
+        <!-- Stats Section -->
+        <section id="stats" class="stats section dark-background">
+
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-item">
+                            <i class="bi bi-emoji-smile"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="300" data-purecounter-duration="1" class="purecounter"></span>
+                            <p><strong>Satisfied Teams</strong> <span>using our platform</span></p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-item">
+                            <i class="bi bi-journal-richtext"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="750" data-purecounter-duration="1" class="purecounter"></span>
+                            <p><strong>Tasks Completed</strong> <span>and tracked seamlessly</span></p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-item">
+                            <i class="bi bi-headset"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="2000" data-purecounter-duration="1" class="purecounter"></span>
+                            <p><strong>Hours Saved</strong> <span>through task automation</span></p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-item">
+                            <i class="bi bi-people"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1" class="purecounter"></span>
+                            <p><strong>Teams Empowered</strong> <span>with our solution</span></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section><!-- /Stats Section -->
+       
+        
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials section light-background">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Testimonials</h2>
+                <p>Hear from those who have experienced the benefits of our duty management services.</p>
+            </div><!-- End Section Title -->
+
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="swiper init-swiper">
+                    <script type="application/json" class="swiper-config">
+                        {
+                            "loop": true,
+                            "speed": 600,
+                            "autoplay": {
+                                "delay": 5000
+                            },
+                            "slidesPerView": "auto",
+                            "pagination": {
+                                "el": ".swiper-pagination",
+                                "type": "bullets",
+                                "clickable": true
+                            }
+                        }
+                    </script>
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <div class="row gy-4 justify-content-center">
+                                    <div class="col-lg-6">
+                                        <div class="testimonial-content">
+                                            <p>
+                                                <i class="bi bi-quote quote-icon-left"></i>
+                                                <span>The duty management system streamlined our operations, helping us maintain productivity and efficiency in a way we hadn't managed before.</span>
+                                                <i class="bi bi-quote quote-icon-right"></i>
+                                            </p>
+                                            <h3>Saul Goodman</h3>
+                                            <h4>CEO</h4>
+                                            <div class="stars">
+                                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 text-center">
+                                        <img src="~/assets/img/testimonials/testimonials-1.jpg" class="img-fluid testimonial-img" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <div class="row gy-4 justify-content-center">
+                                    <div class="col-lg-6">
+                                        <div class="testimonial-content">
+                                            <p>
+                                                <i class="bi bi-quote quote-icon-left"></i>
+                                                <span>Implementing duty management has given us a transparent view of shifts and scheduling, making team coordination much easier.</span>
+                                                <i class="bi bi-quote quote-icon-right"></i>
+                                            </p>
+                                            <h3>Sara Wilsson</h3>
+                                            <h4>Project Manager</h4>
+                                            <div class="stars">
+                                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 text-center">
+                                        <img src="~/assets/img/testimonials/testimonials-2.jpg" class="img-fluid testimonial-img" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <div class="row gy-4 justify-content-center">
+                                    <div class="col-lg-6">
+                                        <div class="testimonial-content">
+                                            <p>
+                                                <i class="bi bi-quote quote-icon-left"></i>
+                                                <span>Thanks to the duty management platform, we've optimized our team's shift planning, improving coverage and response times.</span>
+                                                <i class="bi bi-quote quote-icon-right"></i>
+                                            </p>
+                                            <h3>Jena Karlis</h3>
+                                            <h4>Operations Lead</h4>
+                                            <div class="stars">
+                                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 text-center">
+                                        <img src="~/assets/img/testimonials/testimonials-3.jpg" class="img-fluid testimonial-img" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <div class="row gy-4 justify-content-center">
+                                    <div class="col-lg-6">
+                                        <div class="testimonial-content">
+                                            <p>
+                                                <i class="bi bi-quote quote-icon-left"></i>
+                                                <span>With duty management, we finally have a flexible, user-friendly system for managing personnel and shifts across multiple locations.</span>
+                                                <i class="bi bi-quote quote-icon-right"></i>
+                                            </p>
+                                            <h3>John Larson</h3>
+                                            <h4>Business Owner</h4>
+                                            <div class="stars">
+                                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 text-center">
+                                        <img src="~/assets/img/testimonials/testimonials-4.jpg" class="img-fluid testimonial-img" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+            </div>
+
+        </section><!-- /Testimonials Section -->
+        <!-- Team Section -->
+        <section id="team" class="team section">
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Duty Master Team</h2>
+                <p>Our dedicated team ensuring seamless duty schedules and operations</p>
+            </div><!-- End Section Title -->
+
+            <div class="container">
+                <div class="row gy-5 justify-content-center">
+                    <!-- Single Team Member -->
+                    <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
+                        <div class="member-img square-image">
+                            <img src="~/assets/img/team/duty-manager.jpg" class="img-fluid w-100" alt="Duty Manager">
+                            <div class="social">
+                                <a href="https://www.facebook.com/omar.adly.5268?mibextid=ZbWKwL"><i class="bi bi-facebook"></i></a>
+                                <a href="https://www.instagram.com/omar_adly_27?igsh=MWo0ZXVhc25yZWhyMw=="><i class="bi bi-instagram"></i></a>
+                                <a href="https://www.linkedin.com/in/omar-adly-bba664207/"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="member-info text-center">
+                            <h4>Omar Adly</h4>
+                            <span>Duty Manager</span>
+                            <p>Dedicated to organizing schedules, handling duties, and ensuring seamless operational flow.</p>
+                        </div>
+                    </div><!-- End Single Team Member -->
+                </div>
+            </div>
+        </section><!-- /Team Section -->
+        
+        
+        <!-- Contact Section -->
+        <section id="contact" class="contact section">
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Contact Support</h2>
+                <p>Have questions about duty management? Get in touch with our support team.</p>
+            </div><!-- End Section Title -->
+
+            <div class="container" data-aos="fade" data-aos-delay="100">
+                <div class="row gy-4">
+                    <div class="col-lg-4">
+                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                            <i class="bi bi-geo-alt flex-shrink-0"></i>
+                            <div>
+                                <h3>Office Address</h3>
+                                <p>C8 Compound Antoniados, Smouha, Alex 21648</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                            <i class="bi bi-telephone flex-shrink-0"></i>
+                            <div>
+                                <h3>Support Hotline</h3>
+                                <p>+01062727080</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                            <i class="bi bi-envelope flex-shrink-0"></i>
+                            <div>
+                                <h3>Email Support</h3>
+                                <p>omaradlymms@gmail.com</p>
+                            </div>
+                        </div><!-- End Info Item -->
+                    </div>
+
+                    <div class="col-lg-8">
+                        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                            <div class="row gy-4">
+                                <div class="col-md-6">
+                                    <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                                </div>
+                                <div class="col-md-6 ">
+                                    <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                                </div>
+                                <div class="col-md-12">
+                                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <div class="loading">Loading</div>
+                                    <div class="error-message"></div>
+                                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                                    <button type="submit">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- End Contact Form -->
+                </div>
+            </div>
+        </section><!-- /Contact Section -->
+
+
+    </main>
+
+    <footer id="footer" class="footer dark-background">
+
+        <div class="container footer-top">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6 footer-about">
+                    <a href="index.html" class="logo d-flex align-items-center">
+                        <span class="sitename">Duty Master</span>
+                    </a>
+                    <div class="footer-contact pt-3">
+                        <p>C8 Compound Antoniados</p>
+                        <p> Smouha, Alex 21648</p>
+                        <p class="mt-3"><strong>Phone:</strong> <span>+01062727080</span></p>
+                        <p><strong>Email:</strong> <span>omaradlymms@gmail.com</span></p>
+                    </div>
+                    <div class="social-links d-flex mt-4">
+                        
+                        <a href="https://www.facebook.com/omar.adly.5268?mibextid=ZbWKwL"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/omar_adly_27?igsh=MWo0ZXVhc25yZWhyMw=="><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/omar-adly-bba664207/"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-3 footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#">Duty Scheduling</a></li>
+                        <li><a href="#">Resource Management</a></li>
+                        <li><a href="#">Task Assignments</a></li>
+                        <li><a href="#">Performance Tracking</a></li>
+                        <li><a href="#">Reporting Tools</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-12 footer-newsletter">
+                    <h4>Our Newsletter</h4>
+                    <p>Subscribe to our newsletter and receive the latest updates on duty management solutions!</p>
+                    <form action="forms/newsletter.php" method="post" class="php-email-form">
+                        <div class="newsletter-form">
+                            <input type="email" name="email" placeholder="Your Email">
+                            <input type="submit" value="Subscribe">
+                        </div>
+                        <div class="loading">Loading</div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container copyright text-center mt-4">
+            <p>2024 - © <span>Copyright</span> <strong class="px-1 sitename">Duty Master</strong> <span>All Rights Reserved</span></p>
+            <div class="credits">
+                Designed by <a href="https://bootstrapmade.com/">Omar Adly</a>
+            </div>
+        </div>
+
+    </footer>
+
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/php-email-form/validate.js"></script>
+    <script src="~/assets/vendor/aos/aos.js"></script>
+    <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="~/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="~/assets/js/main.js"></script>
+</body>
+
+</html>
